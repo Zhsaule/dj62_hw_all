@@ -14,4 +14,5 @@ class Command(BaseCommand):
 
         for phone in phones:
             # TODO: Добавьте сохранение модели
-            pass
+            phone = Phone(**phone)
+            phone.save()
