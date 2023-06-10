@@ -10,22 +10,18 @@ from logistic.serializers import ProductSerializer, StockSerializer
 class ProductViewSet(ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    filter_backends = [DjangoFilterBackend, SearchFilter]
-    filterset_fields = ['title', 'description']
+    filter_backends = [SearchFilter]
     search_fields = ['title', 'description']
-    ordering_fields = ['id', 'title', 'description']
+    ordering_fields = '__all__'
     pagination_class = LimitOffsetPagination
-
-    # при необходимости добавьте параметры фильтрации
 
 
 class StockViewSet(ModelViewSet):
     queryset = Stock.objects.all()
-    print(f'queryset')
     serializer_class = StockSerializer
     filter_backends = [DjangoFilterBackend, SearchFilter]
-    filterset_fields = ['address']
-    search_fields = ['address']
+    filterset_fields = ['products']
+    search_fields = ['products']
     ordering_fields = '__all__'
     pagination_class = LimitOffsetPagination
 
